@@ -10,6 +10,7 @@ pygame.init()
 #constants
 SCREEN_WIDTH = 600
 SCREEN_HEIGHT = 600
+BACKGROUND_COLOR = (50,50,50)  #grey
 
 #initilize display
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))  #moved this to game class last time
@@ -22,6 +23,15 @@ is_game_over = False  #moved this to game class last time, in game loop method
 #moved this to game class last time, in game loop method
 while not is_game_over:
 
+    #load spritesheet image
+    spritesheet_image = pygame.image.load("Fox_idle.png").convert_alpha()
+    
+    #clear screen
+    screen.fill(BACKGROUND_COLOR)
+
+    #display image
+    screen.blit(spritesheet_image, (0,0))
+    
     #event handler
     for event in pygame.event.get():
         #game quit
