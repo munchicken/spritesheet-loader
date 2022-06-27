@@ -14,15 +14,16 @@ BACKGROUND_COLOR = (50,50,50)  #grey
 
 #functions
 #grab the frame from the spritesheet (w/h of frame on sheet)
-def get_frame(width,height):
-    image = pygame.Surface((width,height)).convert_alpha()
+def get_frame(sheet,width,height):
+    image = pygame.Surface((width,height)).convert_alpha()  #create surface the size of a frame
+    image.blit(sheet,(0,0),(0,0,width, height))  #display the area (starting 0,0 to w,h) at 0,0
     return image
 
 #initilize display
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))  #moved this to game class last time
 pygame.display.set_caption("Spritesheet Loader")  #moved this to game class last time
 spritesheet_image = pygame.image.load("Fox_idle.png").convert_alpha()  #load spritesheet image
-frame = get_frame(96,96)
+frame = get_frame(spritesheet_image,96,96)  #grab the 1st frame from spritesheet
 
 #initialize game variables
 is_game_over = False  #moved this to game class last time, in game loop method
