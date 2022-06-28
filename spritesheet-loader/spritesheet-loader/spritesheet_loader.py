@@ -17,7 +17,7 @@ BLACK = (0,0,0)
 #grab the frame from the spritesheet (w/h of frame on sheet, scaled, color is transparent)
 def get_frame(sheet,frame,width,height,scale,color):
     image = pygame.Surface((width,height)).convert_alpha()  #create surface the size of a frame
-    image.blit(sheet,(0,0),((frame * width),0,width, height))  #display the area (starting 0,0 to w,h) at 0,0
+    image.blit(sheet,(0,0),((frame * width),0,width, height))  #display the area (starting at frame # * width of frame, and only in a row (y=0) to w,h) at 0,0
     image = pygame.transform.scale(image,(width * scale,height * scale))  #scale image
     image.set_colorkey(color)  #set transparency
     return image
