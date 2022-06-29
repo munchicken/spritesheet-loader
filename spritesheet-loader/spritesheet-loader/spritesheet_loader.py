@@ -14,27 +14,22 @@ SCREEN_WIDTH = 600
 SCREEN_HEIGHT = 600
 GREY = (50,50,50)
 BLACK = (0,0,0)
-
-#functions
-
-#classes
     
 #initialize game variables
-is_game_over = False  #moved this to game class last time, in game loop method
+is_game_over = False
 rows = 4  #rows in fox spritesheet
 cols = 4  #cols in fox spritesheet
 sheet_width = 384  #width of fox spritesheet
 sheet_height = 384  #height of fox spritesheet
-screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))  #moved this to game class last time
+screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 spritesheet_image = pygame.image.load("Fox_idle.png").convert_alpha()  #load spritesheet image
 spritesheet = spritesheet.Spritesheet(spritesheet_image,sheet_width,sheet_height,rows,cols)  #instantiate spritesheet object
 frames = spritesheet.get_frames(1,BLACK)  #get all frames from spritesheet
 
 #initilize display
-pygame.display.set_caption("Spritesheet Loader")  #moved this to game class last time
+pygame.display.set_caption("Spritesheet Loader")
 
 #game loop
-#moved this to game class last time, in game loop method
 while not is_game_over:
     
     y = 0  #used to display images

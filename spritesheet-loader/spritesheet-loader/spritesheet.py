@@ -2,6 +2,10 @@
 # Loads images from a spritesheet for use with my games
 # by Sarah Pierce
 
+# Spritesheet(image,width,height,rows,cols)  Spritesheet object with properties: spritesheet image,spritesheet width, spritesheet height, rows of images in spritesheet, cols of images in spritesheet
+# get_frame(row,col,scale,color)  Method to get an individual frame at row/col in spritesheet, with scaling factor 'scale' & transparancy 'color'
+# get_frames(scale,color)  Method to get all frames from spritesheet and return them as a list, with scaling factor 'scale' & transparancy 'color'
+
 import pygame
 
 class Spritesheet():
