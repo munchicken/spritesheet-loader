@@ -15,19 +15,26 @@ BLACK = (0,0,0)
 
 #functions
 
-#grab the frame from the spritesheet (w/h of sheet,max row/col of sheet, frame row/col, scaled, color is transparent)
-def get_frame(sheet,row,col,width,height,max_col,max_row,scale,color):
-    image = pygame.Surface(((width//max_col),(height//max_row))).convert_alpha()  #create surface the size of a frame (sheet size divided by rows/cols) (using int division)
-    image.blit(sheet,(0,0),((col * (width//max_col)),(row * (height//max_row)),(width//max_col), (height//max_row)))  #display the area (starting 0,0 to w,h) at 0,0
-    image = pygame.transform.scale(image,((width//max_col) * scale,(height//max_row) * scale))  #scale image
+#grab individual frame from the spritesheet (w/h of sheet,max row/col of sheet, frame row/col, scaled, color is transparent)
+def get_frame(sheet,row,col,width,height,cols,rows,scale,color):
+    image = pygame.Surface(((width//cols),(height//rows))).convert_alpha()  #create surface the size of a frame (sheet size divided by rows/cols) (using int division)
+    image.blit(sheet,(0,0),((col * (width//cols)),(row * (height//rows)),(width//cols), (height//rows)))  #display the area (starting 0,0 to w,h) at 0,0
+    image = pygame.transform.scale(image,((width//cols) * scale,(height//rows) * scale))  #scale image
     image.set_colorkey(color)  #set transparency
     return image
+
+#grab all the frames from the spreadsheet (w/h of sheet, max row/col of sheet, scaled, color is transparent)
+def get_frames(sheet,width,height,cols,rows,scale,color):
+    frames = []  #empty list for frame images
+    for row in range(rows):
+        for col in range(cols):
+            frames.append(get_frame(sheet,row,col,width,height,cols,rows,scale,color))  #grab the frame from spritesheet
+    return frames
 
 #initialize game variables
 is_game_over = False  #moved this to game class last time, in game loop method
 rows = 4  #rows in fox spritesheet
 cols = 4  #cols in fox spritesheet
-frames = []  #empty list for frame images
 sheet_width = 384  #width of fox spritesheet
 sheet_height = 384  #height of fox spritesheet
 
@@ -35,10 +42,7 @@ sheet_height = 384  #height of fox spritesheet
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))  #moved this to game class last time
 pygame.display.set_caption("Spritesheet Loader")  #moved this to game class last time
 spritesheet_image = pygame.image.load("Fox_idle.png").convert_alpha()  #load spritesheet image
-
-for row in range(rows):
-    for col in range(cols):
-        frames.append(get_frame(spritesheet_image,row,col,sheet_width,sheet_height,rows,cols,1,BLACK))  #grab the frame from spritesheet
+frames = get_frames(spritesheet_image,sheet_width,sheet_height,rows,cols,1,BLACK)  #get all frames from spritesheet
 
 #game loop
 #moved this to game class last time, in game loop method
