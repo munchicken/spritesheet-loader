@@ -21,9 +21,10 @@ rows = 4  #rows in fox spritesheet
 cols = 4  #cols in fox spritesheet
 sheet_width = 384  #width of fox spritesheet
 sheet_height = 384  #height of fox spritesheet
+crop = False  #crop the returned images
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 spritesheet_image = pygame.image.load("Fox_idle.png").convert_alpha()  #load spritesheet image
-spritesheet = spritesheet.Spritesheet(spritesheet_image,sheet_width,sheet_height,rows,cols)  #instantiate spritesheet object
+spritesheet = spritesheet.Spritesheet(spritesheet_image,sheet_width,sheet_height,rows,cols,crop)  #instantiate spritesheet object
 frames = spritesheet.get_frames(1,BLACK)  #get all frames from spritesheet
 
 #initilize display
